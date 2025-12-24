@@ -1,0 +1,38 @@
+# Binaries
+*.exe
+*.dll
+*.so
+*.dylib
+smartbudget
+expenseowl
+
+# Data files (personal data)
+data/
+*.json
+!go.mod
+!go.sum
+!manifest.json
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Backup files
+*.backup
+*.bak
+*.old
+
+# Environment variables
+.env
+
+run-with-auth.ps1
