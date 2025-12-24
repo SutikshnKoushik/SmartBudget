@@ -10,6 +10,12 @@ permissions:
   packages: write
 
 jobs:
+  create-release:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.version.outputs.new_version }}
+    steps:
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - name: Determine Version
@@ -47,10 +53,11 @@ jobs:
           GH_TOKEN: ${{ github.token }}
 
   build:
+    needs: create-release
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        os: [linux, windows, darwin]
+        os: [linux, windows]
         arch: [amd64]
     steps:
       - uses: actions/checkout@v4
