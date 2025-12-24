@@ -10,12 +10,6 @@ permissions:
   packages: write
 
 jobs:
-  create-release:
-    runs-on: ubuntu-latest
-    outputs:
-      version: ${{ steps.version.outputs.new_version }}
-    steps:
-      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - name: Determine Version
@@ -53,7 +47,6 @@ jobs:
           GH_TOKEN: ${{ github.token }}
 
   build:
-    needs: create-release
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -105,7 +98,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
-          platforms: linux/amd64
+          platforms: linux/amd64/linux/arm64
           push: true
           tags: |
             tanq16/expenseowl:main
