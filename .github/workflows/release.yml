@@ -58,7 +58,7 @@ jobs:
     strategy:
       matrix:
         os: [linux, windows, darwin]
-        arch: [amd64, arm64]
+        arch: [amd64]
     steps:
       - uses: actions/checkout@v4
       - name: Set up Go
@@ -105,7 +105,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
-          platforms: linux/amd64,linux/arm64
+          platforms: linux/amd64
           push: true
           tags: |
             tanq16/expenseowl:main
